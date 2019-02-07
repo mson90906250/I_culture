@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "tw.tcnr01.account_mysql_user_pwd"
+        applicationId "tw.tcnr01.I_culture"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1

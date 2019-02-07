@@ -1,11 +1,9 @@
-package tw.tcnr01.account_mysql_user_pwd;
+package tw.tcnr01.I_culture;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class Account extends AppCompatActivity implements View.OnClickListener {
+public class Main extends AppCompatActivity implements View.OnClickListener {
 
     private FragmentTransaction mTransaction;
     private ImageView img01;
@@ -36,7 +34,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_account);
+        setContentView(R.layout.layout_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("I文創 審計新村");
@@ -173,13 +171,22 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.account, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+
+        switch (item.getItemId()){
+            case R.id.login://登入
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),Account.class);
+                startActivity(intent);
+                break;
+        }
+
+        /*       // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
@@ -187,7 +194,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
