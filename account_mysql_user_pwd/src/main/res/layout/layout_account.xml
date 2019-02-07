@@ -13,13 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <android.support.design.widget.NavigationView
+
+
+        android:orientation="vertical">
+
+        <include
+        layout="@layout/nav_header_account"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"/>
+
+
+
+   <!--系統原生的用不到-->
+  <!--  <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_account"
-        app:menu="@menu/layout_account_drawer" />
+        app:menu="@menu/layout_account_drawer" />-->
 
 </android.support.v4.widget.DrawerLayout>
