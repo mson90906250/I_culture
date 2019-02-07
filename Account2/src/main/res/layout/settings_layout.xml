@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Sliver"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="50dp"
+    android:paddingEnd="10dp">
+
+
+    <tw.tcnr01.I_culture.CircleImgView
+        android:id="@+id/Settings_imgC"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/acl037300" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Settings_txt01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Settings_txt01"
+            android:textColor="@color/darkblue"
+            android:textSize="24sp" />
+
+        <Switch
+            android:id="@+id/Settings_sw01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="@string/Settings_Off"
+            android:textOn="@string/Settings_On"
+            android:thumbTint="@color/White" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"/>
+
+    <Button
+        android:id="@+id/Settings_btn03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/Yellow"
+        android:text="@string/Settings_btn03" />
+</LinearLayout>
