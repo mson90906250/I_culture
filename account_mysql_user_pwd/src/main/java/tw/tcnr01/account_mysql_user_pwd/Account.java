@@ -13,8 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Account extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Account extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,15 @@ public class Account extends AppCompatActivity
         //用不到
         /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);*/
+
+        //將content_account的layout替換成home_fragment
+        HomeFragment homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
+
+        setupViewComponent();
+    }
+
+    private void setupViewComponent() {
     }
 
     @Override
@@ -76,7 +84,8 @@ public class Account extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+  //系統生成用不到
+    /*  @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -99,5 +108,5 @@ public class Account extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 }
