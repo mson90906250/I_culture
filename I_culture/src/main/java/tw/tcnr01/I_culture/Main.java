@@ -25,7 +25,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private MoreFragment moreFragment;
     private FavoriteFragment favoriteFragment;
     private ShopFragment shopFragment;
-    private NewsFragment newsFragment;
+    private EventFragment eventFragment;
     private BusFragment busFragment;
     private  UbikeFragment ubikeFragment;
     private Toolbar toolbar;
@@ -78,7 +78,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         moreFragment= new MoreFragment();
         shopFragment = new ShopFragment();
         ubikeFragment = new UbikeFragment();
-        newsFragment = new NewsFragment();
+        eventFragment = new EventFragment();
 
 
         //用巨集做側邊欄按鈕及監聽
@@ -108,7 +108,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.btn2://回近期活動
                 mTransaction = getSupportFragmentManager().beginTransaction();
-                mTransaction.replace(R.id.container,newsFragment).commit();
+                mTransaction.replace(R.id.container, eventFragment).commit();
                 toolbar.setTitle("近期活動");
                 break;
 

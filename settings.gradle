@@ -1,2 +1,2 @@
-include ':Account', ':account_mysql_user_pwd'
+include ':Account', ':account_mysql_user_pwd', 'I_culture', ':RecyclerView_db'
 include 'Account2', '3006_drawerlayout'
