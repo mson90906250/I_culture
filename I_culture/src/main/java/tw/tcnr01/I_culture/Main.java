@@ -167,7 +167,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         mAccount = account;
         mPwd = pwd;
         mEmail = email;
-
     }
 
     @Override
@@ -197,6 +196,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 intent.setClass(getApplicationContext(),Account.class);
                 startActivity(intent);
                 break;
+
         }
 
         /*       // Handle action bar item clicks here. The action bar will

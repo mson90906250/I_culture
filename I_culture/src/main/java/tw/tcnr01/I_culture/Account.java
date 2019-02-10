@@ -177,7 +177,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     //將輸入的帳號及密碼送到後台做判斷
     private boolean check(String input_account, String input_password) {
 
-        sqlctl = "SELECT * FROM account WHERE Username ="+input_account+"AND Password = "+input_password;
+        sqlctl = "SELECT * FROM account WHERE Username ="+"\'"+input_account+"\'"+"AND Password = "+"\'"+input_password+"\'";
 
         try {
             String result = DBConnector.executeQuery(sqlctl);
@@ -197,6 +197,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                 mAccount = jsonData.getString(JSON_USERNAME);
                 mPwd = jsonData.getString(JSON_PASSWORD);
                 mEmail = jsonData.getString(JSON_EMAIL);
+                Log.d(TAG,mAccount+mEmail+mPwd);
 
                 //由於key值為已知 所以不須使用下面方法
                 /*             Iterator itt = jsonData.keys();
