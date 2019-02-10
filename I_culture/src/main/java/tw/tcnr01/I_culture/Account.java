@@ -178,8 +178,9 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
 
     //將輸入的帳號及密碼送到後台做判斷
     private boolean check(String input_account, String input_password) {
+        //不能解決大小寫 因為ci代表case insensitive(大小寫不敏感) 反之cs為case sensitive 但有些server并沒有utf8_general_cs 所以請將資料庫的編碼改成utf8_bin
+       sqlctl = "SELECT * FROM account WHERE Username ="+"\'"+input_account+"\'"+"AND Password = "+"\'"+input_password+"\'";
 
-        sqlctl = "SELECT * FROM account WHERE Username ="+"\'"+input_account+"\'"+"AND Password = "+"\'"+input_password+"\'";
 
         try {
             String result = DBConnector.executeQuery(sqlctl);

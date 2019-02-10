@@ -34,11 +34,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         Settings_sw01 = (Switch)findViewById(R.id.Settings_sw01);//切換是否要接收推播
         //Settings_btn01 = (Button)findViewById(R.id.Settings_btn01);//修改密碼
         //  Settings_btn02 = (Button)findViewById(R.id.Settings_btn02);//更換大頭照
-        Settings_btn03 = (Button)findViewById(R.id.Settings_btn03);//離開
+
 
 //        Settings_btn01.setOnClickListener(this);
         //     Settings_btn02.setOnClickListener(this);
-        Settings_btn03.setOnClickListener(this);
+
     }
 
     @Override
@@ -98,11 +98,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
 
                 break;*/
 
-            case R.id.Settings_btn03://離開
+            /*case R.id.Settings_btn03://離開
                 Intent it = new Intent(Settings.this,Account.class);
                 startActivity(it);
                 Settings.this.finish();
-                break;
+                break;*/
 
         }
     }
