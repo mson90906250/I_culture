@@ -38,6 +38,8 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     private final String JSON_USERNAME = "Username";
     private final String JSON_PASSWORD ="Password";
     private final String JSON_EMAIL = "Email";
+    private static Main main ;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +130,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                     d.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //按下確定後離開登入頁面,並回到前一頁面
-                            Main.setAccount(mAccount,mPwd,mEmail);
+                            main.setAccount(mAccount,mPwd,mEmail);
                             finish();
                         }
                     });
@@ -251,6 +253,10 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
       }*/
 
 
+    }
+
+    public static void setContext(Object context) {
+        main = (Main) context;
     }
 
 

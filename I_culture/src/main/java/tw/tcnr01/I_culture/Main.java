@@ -3,6 +3,7 @@ package tw.tcnr01.I_culture;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +32,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar;
     private static String mAccount,mPwd,mEmail;//用來記錄真正的帳號和密碼
     private MenuItem login,logout,settings;
+    private String TAG="tcnr01=>";
 
 
     @Override
@@ -81,12 +83,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         shopFragment = new ShopFragment();
         ubikeFragment = new UbikeFragment();
         eventFragment = new EventFragment();
-
-        //menu item
-        login = (MenuItem)findViewById(R.id.login);
-        logout = (MenuItem)findViewById(R.id.logout);
-        settings = (MenuItem)findViewById(R.id.settings);
-
 
         //用巨集做側邊欄按鈕及監聽
         for(int i =0; i<10 ;i++){
@@ -163,10 +159,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-    public static void setAccount(String account,String pwd,String email){
+    public  void setAccount(String account,String pwd,String email){
         mAccount = account;
         mPwd = pwd;
         mEmail = email;
+
+        Log.d(TAG,"02 "+login);
+        login.setVisible(false);
+        logout.setVisible(true);
+        settings.setVisible(true);
     }
 
     @Override
@@ -184,6 +185,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        //menu item 的findViewById()
+        login = menu.findItem(R.id.login);//登入
+        logout = menu.findItem(R.id.logout);//登出
+        settings = menu.findItem(R.id.settings);//設定
+
         return true;
     }
 
@@ -194,6 +201,23 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
             case R.id.login://登入
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(),Account.class);
+                Account.setContext(Main.this);
+                startActivity(intent);
+                break;
+
+            case R.id.logout:
+                mEmail = "";
+                mPwd = "";
+                mAccount = "";
+
+                login.setVisible(true);
+                logout.setVisible(false);
+                settings.setVisible(false);
+                break;
+
+            case R.id.settings:
+                 intent = new Intent();
+                 intent.setClass(getApplicationContext(),Settings.class);
                 startActivity(intent);
                 break;
 
