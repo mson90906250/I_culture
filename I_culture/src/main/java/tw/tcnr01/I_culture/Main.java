@@ -29,6 +29,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private BusFragment busFragment;
     private  UbikeFragment ubikeFragment;
     private Toolbar toolbar;
+    private static String mAccount,mPwd,mEmail;//用來記錄真正的帳號和密碼
+    private MenuItem login,logout,settings;
 
 
     @Override
@@ -79,6 +81,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         shopFragment = new ShopFragment();
         ubikeFragment = new UbikeFragment();
         eventFragment = new EventFragment();
+
+        //menu item
+        login = (MenuItem)findViewById(R.id.login);
+        logout = (MenuItem)findViewById(R.id.logout);
+        settings = (MenuItem)findViewById(R.id.settings);
 
 
         //用巨集做側邊欄按鈕及監聽
@@ -155,6 +162,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+    public static void setAccount(String account,String pwd,String email){
+        mAccount = account;
+        mPwd = pwd;
+        mEmail = email;
+
     }
 
     @Override

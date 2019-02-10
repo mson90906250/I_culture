@@ -3,6 +3,7 @@ package tw.tcnr01.I_culture;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 import tw.tcnr01.I_culture.R;
 
@@ -26,13 +33,35 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     private String test_account, test_pwd, test_mail;//用來模擬抓取註冊後新增的值
     private String TAG = "tcnr01=>";
     private Button test;
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private String sqlctl;
+    private String mAccount,mPwd,mEmail;
+    private final String JSON_USERNAME = "Username";
+    private final String JSON_PASSWORD ="Password";
+    private final String JSON_EMAIL = "Email";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_account);
+        //-------------抓取遠端資料庫設定執行續------------------------------
+        StrictMode.setThreadPolicy(new
+                StrictMode.
+                        ThreadPolicy.Builder().
+                detectDiskReads().
+                detectDiskWrites().
+                detectNetwork().
+                penaltyLog().
+                build());
+        StrictMode.setVmPolicy(
+                new
+                        StrictMode.
+                                VmPolicy.
+                                Builder().
+                        detectLeakedSqlLiteObjects().
+                        penaltyLog().
+                        penaltyDeath().
+                        build());
+//---------------------------------------------------------------------
 
 
         setupViewComponent();
@@ -98,7 +127,8 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                             .setCancelable(false);
                     d.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            //按下確定後離開登入頁面,並回到首頁
+                            //按下確定後離開登入頁面,並回到前一頁面
+                            Main.setAccount(mAccount,mPwd,mEmail);
                             finish();
                         }
                     });
@@ -146,7 +176,51 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
 
     //將輸入的帳號及密碼送到後台做判斷
     private boolean check(String input_account, String input_password) {
-        //模擬用的
+
+        sqlctl = "SELECT * FROM account WHERE Username ="+input_account+"AND Password = "+input_password;
+
+        try {
+            String result = DBConnector.executeQuery(sqlctl);
+            /**************************************************************************
+             * SQL 結果有多筆資料時使用JSONArray
+             * 只有一筆資料時直接建立JSONObject物件 JSONObject
+             * jsonData = new JSONObject(result);
+             **************************************************************************/
+            //幾筆資料  理論上只會有一筆 因為是用來確認帳號密碼的
+            JSONArray jsonArray = new JSONArray(result);
+            // ---
+            //幾個欄位
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonData = jsonArray.getJSONObject(i);
+                // // 取出 jsonObject 中的字段的值的空格
+
+                mAccount = jsonData.getString(JSON_USERNAME);
+                mPwd = jsonData.getString(JSON_PASSWORD);
+                mEmail = jsonData.getString(JSON_EMAIL);
+
+                //由於key值為已知 所以不須使用下面方法
+                /*             Iterator itt = jsonData.keys();
+//    tr.setGravity(Gravity.CENTER_HORIZONTAL);
+                while (itt.hasNext()) {
+                    String key = itt.next().toString();
+                    String value = jsonData.getString(key);
+                    if (value == null) {
+                        continue;
+                    } else if ("".equals(value.trim())) {
+                        continue;
+                    } else {
+                        jsonData.put(key, value.trim());
+                    }
+
+                }*/
+            }
+            return true;
+        } catch (Exception e) {
+            Log.d(TAG, e.toString());
+            return  false;
+        }
+
+       /* //模擬用的
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         if (bundle != null) {
@@ -164,7 +238,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
 
         } else {
             return false;
-        }
+        }*/
         //--------------
     /*  String account = "owner01";
       String pwd = "a123456789";
