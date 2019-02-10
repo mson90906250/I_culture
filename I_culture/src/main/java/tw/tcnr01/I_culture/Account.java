@@ -34,10 +34,11 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
     private String TAG = "tcnr01=>";
     private Button test;
     private String sqlctl;
-    private String mAccount,mPwd,mEmail;
+    private String mAccount,mPwd,mEmail,mImageURL;
     private final String JSON_USERNAME = "Username";
     private final String JSON_PASSWORD ="Password";
     private final String JSON_EMAIL = "Email";
+    private final String JSON_IMAGE_URL = "Headshot";
     private static Main main ;
 
 
@@ -130,7 +131,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                     d.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //按下確定後離開登入頁面,並回到前一頁面
-                            main.setAccount(mAccount,mPwd,mEmail);
+                            main.setAccount(mAccount,mPwd,mEmail,mImageURL);
                             finish();
                         }
                     });
@@ -200,6 +201,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                 mAccount = jsonData.getString(JSON_USERNAME);
                 mPwd = jsonData.getString(JSON_PASSWORD);
                 mEmail = jsonData.getString(JSON_EMAIL);
+                mImageURL = jsonData.getString(JSON_IMAGE_URL);
                 Log.d(TAG,mAccount+mEmail+mPwd);
 
                 //由於key值為已知 所以不須使用下面方法

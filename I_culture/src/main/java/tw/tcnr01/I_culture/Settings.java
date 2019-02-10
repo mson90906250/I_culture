@@ -1,15 +1,22 @@
 package tw.tcnr01.I_culture;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 
 public class Settings extends AppCompatActivity implements View.OnClickListener {
@@ -19,12 +26,16 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     private Button Settings_chpwd_btn01,Settings_chpwd_btn02;
     private EditText Settings_chpwd_etxt01,Settings_chpwd_etxt02;
     private TextView Settings_chpwd_txt03;
+    private final String IMAGE_URL = "imgURL";
+    private String mImgURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_settings);
 
+        //取得大頭照網址
+        mImgURL = getIntent().getStringExtra(IMAGE_URL);
 
         setupVIewComponent();
     }
@@ -34,6 +45,10 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         Settings_sw01 = (Switch)findViewById(R.id.Settings_sw01);//切換是否要接收推播
         //Settings_btn01 = (Button)findViewById(R.id.Settings_btn01);//修改密碼
         //  Settings_btn02 = (Button)findViewById(R.id.Settings_btn02);//更換大頭照
+
+        //將抓取的圖片url放入execute()裡
+        new DownloadImageTask((ImageView) findViewById(R.id.Settings_imgC))
+                .execute(mImgURL);
 
 
 //        Settings_btn01.setOnClickListener(this);
@@ -120,6 +135,32 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             }
         }else {
             return false;
+        }
+    }
+
+    //從外部網路抓圖下來
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 

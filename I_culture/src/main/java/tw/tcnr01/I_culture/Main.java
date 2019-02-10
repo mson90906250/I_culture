@@ -30,9 +30,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private BusFragment busFragment;
     private  UbikeFragment ubikeFragment;
     private Toolbar toolbar;
-    private static String mAccount,mPwd,mEmail;//用來記錄真正的帳號和密碼
+    private static String mAccount,mPwd,mEmail,mImageURL;//用來記錄真正的帳號和密碼
     private MenuItem login,logout,settings;
     private String TAG="tcnr01=>";
+    private final String IMAGE_URL = "imgURL";
+
 
 
     @Override
@@ -159,10 +161,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-    public  void setAccount(String account,String pwd,String email){
+    public  void setAccount(String account,String pwd,String email,String imgURL){
         mAccount = account;
         mPwd = pwd;
         mEmail = email;
+        mImageURL = imgURL;
 
         Log.d(TAG,"02 "+login);
         login.setVisible(false);
@@ -218,6 +221,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
             case R.id.settings:
                  intent = new Intent();
                  intent.setClass(getApplicationContext(),Settings.class);
+                 //將大頭照的網址傳給settings.class
+                 intent.putExtra(IMAGE_URL,mImageURL);
                 startActivity(intent);
                 break;
 
