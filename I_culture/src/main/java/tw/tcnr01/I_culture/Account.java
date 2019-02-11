@@ -78,14 +78,14 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
         //  Account_btn01 = (Button) findViewById(R.id.Account_btn01);//註冊
         Account_btn02 = (Button) findViewById(R.id.Account_btn02);//登入
         Account_btn03 = (Button) findViewById(R.id.Account_btn03);//使用google帳號登入
-        test = (Button) findViewById(R.id.test);
+        //test = (Button) findViewById(R.id.test);
 
 
         Account_txt03.setOnClickListener(this);
 //        Account_btn01.setOnClickListener(this);
         Account_btn02.setOnClickListener(this);
         Account_btn03.setOnClickListener(this);
-        test.setOnClickListener(this);
+       // test.setOnClickListener(this);
 
     }
 
@@ -146,11 +146,11 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
             case R.id.Account_btn03://使用google帳號登入
                 break;
 
-            case R.id.test://到設定的頁面
+            /*case R.id.test://到設定的頁面
                 Intent itn = new Intent(Account.this, Settings.class);
                 startActivity(itn);
                 Account.this.finish();
-                break;
+                break;*/
 
         }
     }
