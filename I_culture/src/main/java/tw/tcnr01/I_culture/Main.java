@@ -1,4 +1,4 @@
-package tw.tcnr01.I_culture_01;
+package tw.tcnr01.I_culture;
 
 import android.content.Intent;
 import android.os.Bundle;

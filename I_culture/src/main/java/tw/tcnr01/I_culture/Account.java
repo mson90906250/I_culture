@@ -1,4 +1,4 @@
-package tw.tcnr01.I_culture_01;
+package tw.tcnr01.I_culture;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import tw.tcnr01.I_culture_01.R;
 
 public class Account extends AppCompatActivity implements View.OnClickListener {
     private EditText Account_etxt01, Account_etxt02;
