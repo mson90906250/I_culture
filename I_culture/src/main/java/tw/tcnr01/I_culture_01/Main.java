@@ -106,7 +106,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.btn1://回關於審計
-                mTransaction = getSupportFragmentManager().beginTransaction();
+                mTransaction = getSupportFragmentManager().beginTransaction();;
                 mTransaction.replace(R.id.container,aboutFragment).commit();
                 toolbar.setTitle("關於審計");
                 break;
