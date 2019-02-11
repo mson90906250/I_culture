@@ -15,15 +15,18 @@
         <activity
             android:name="tw.tcnr01.I_culture.Main"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="tw.tcnr01.I_culture.Account"></activity>
-        <activity android:name="tw.tcnr01.I_culture.Settings"></activity>
+        <activity android:name="tw.tcnr01.I_culture.Account"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="tw.tcnr01.I_culture.Settings"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
