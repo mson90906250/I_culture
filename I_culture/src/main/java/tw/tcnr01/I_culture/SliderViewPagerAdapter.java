@@ -12,10 +12,12 @@ import android.widget.ImageView;
 public class SliderViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private  Integer [] images = {R.drawable.home_slider1, R.drawable.home_slider2, R.drawable.home_slider3, R.drawable.home_slider4, R.drawable.home_slider5};
+    private  Integer [] images;
+    //private  Integer [] images = {R.drawable.home_slider1, R.drawable.home_slider2, R.drawable.home_slider3, R.drawable.home_slider4, R.drawable.home_slider5};
 
-    public SliderViewPagerAdapter(Context context) {
+    public SliderViewPagerAdapter(Context context,Integer [] images) {
         this.context = context;
+        this.images = images;
     }
 
     @Override

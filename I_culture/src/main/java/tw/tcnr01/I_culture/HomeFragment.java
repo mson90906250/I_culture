@@ -28,6 +28,10 @@ public class HomeFragment extends Fragment {
 
     };
 
+    private  Integer [] images = {R.drawable.home_slider1, R.drawable.home_slider2,
+                                                             R.drawable.home_slider3, R.drawable.home_slider4,
+                                                             R.drawable.home_slider5};
+
     private GridView gridview;
     ViewPager viewPager;
     SliderViewPagerAdapter adapter;
@@ -47,7 +51,7 @@ public class HomeFragment extends Fragment {
 
         //----------------------幻燈片----------------------
         viewPager = v.findViewById(R.id.viewPager);
-        adapter = new SliderViewPagerAdapter(getActivity());
+        adapter = new SliderViewPagerAdapter(getActivity(),images);
         viewPager.setAdapter(adapter);
         sliderDots = v.findViewById(R.id.SliderDots);
         dotCounts = adapter.getCount();
