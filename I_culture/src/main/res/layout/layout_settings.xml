@@ -5,7 +5,7 @@
 
 
         <!--主頁面的内容請在這下面增加,不能在上面新增-->
-        <tw.tcnr01.I_culture.CircleImgView
+        <tw.tcnr01.I_culture_01.CircleImgView
             android:id="@+id/Settings_imgC"
             android:layout_width="150dp"
             android:layout_height="150dp"
