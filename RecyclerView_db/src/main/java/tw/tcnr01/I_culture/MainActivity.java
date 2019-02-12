@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView.LayoutManager recyclerViewlayoutManager;
 
-    RecyclerView.Adapter recyclerViewadapter;
+    RecyclerViewAdapter recyclerViewadapter;
 //連接MySQL
     String GET_JSON_DATA_HTTP_URL = "https://tcnr1624.000webhostapp.com/android_mysql_connect/courses.php";
     String JSON_EventDate = "Event_Date";
@@ -106,5 +108,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewadapter = new RecyclerViewAdapter(GetDataAdapter1, this);
 
         recyclerView.setAdapter(recyclerViewadapter);
+
+        //將recyclerViewadapter設監聽
+        recyclerViewadapter.setOnItemClickListerner(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                //按下後要執行什麽,自行決定
+                Toast.makeText(getApplicationContext(),"hi "+position,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

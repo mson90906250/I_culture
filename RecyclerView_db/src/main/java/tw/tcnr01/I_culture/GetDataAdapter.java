@@ -1,4 +1,4 @@
-package tw.tcnr01.I_culture_01;
+package tw.tcnr01.I_culture;
 
 public class GetDataAdapter {
 //DB欄位相關設定

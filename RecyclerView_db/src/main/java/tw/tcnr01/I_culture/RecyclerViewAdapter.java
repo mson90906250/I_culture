@@ -23,6 +23,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     ImageLoader imageLoader1;
 
+    private  OnItemClickListener mListener; //記得是要用自己的而不是系統的
+
+    //*************自定義一個OnItemClickListener的interface
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    //*************自定義setOnItemClickListener的方法
+    public void setOnItemClickListerner(OnItemClickListener listerner){
+        mListener = listerner;
+    }
+
     public RecyclerViewAdapter(List<GetDataAdapter> getDataAdapter, Context context){
 
         super();
@@ -35,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_items, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v,mListener);
 
         return viewHolder;
     }
@@ -74,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView DateView,TitleView;
         public NetworkImageView networkImageView ;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, final OnItemClickListener listener) {
 
             super(itemView);
 
@@ -83,6 +95,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             TitleView = (TextView) itemView.findViewById(R.id.textView_item2) ;
 
             networkImageView = (NetworkImageView) itemView.findViewById(R.id.VollyNetworkImageView1) ;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        //取得該item的index值
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }
