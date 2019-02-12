@@ -34,7 +34,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     private MenuItem login,logout,settings;
     private String TAG="tcnr01=>";
     private final String IMAGE_URL = "imgURL";
-
+    private DrawerLayout drawer;
 
 
     @Override
@@ -75,6 +75,9 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void setupViewComponent() {
+        //drawer宣告
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         //做fragment的findVIewById();
         aboutFragment = new AboutFragment();
         aboutusFragment = new AboutUsFragment();
@@ -103,60 +106,90 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,homeFragment).commit();
                 toolbar.setTitle("I文創 審計新村");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn1://回關於審計
                 mTransaction = getSupportFragmentManager().beginTransaction();;
                 mTransaction.replace(R.id.container,aboutFragment).commit();
                 toolbar.setTitle("關於審計");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn2://回近期活動
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container, eventFragment).commit();
                 toolbar.setTitle("近期活動");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn3://回店家介紹
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,shopFragment).commit();
                 toolbar.setTitle("店家介紹");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn4://回我的最愛
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,favoriteFragment).commit();
                 toolbar.setTitle("我的最愛");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn5://回探索更多
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,moreFragment).commit();
                 toolbar.setTitle("探索更多");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn6://回公車資訊
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,busFragment).commit();
                 toolbar.setTitle("公車資訊");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn7://回附近Ubike
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,ubikeFragment).commit();
                 toolbar.setTitle("附近Ubike");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn8://回導航到審計
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,mapFragment).commit();
                 toolbar.setTitle("導航到審計");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
             case R.id.btn9://回關於我們
                 mTransaction = getSupportFragmentManager().beginTransaction();
                 mTransaction.replace(R.id.container,aboutusFragment).commit();
                 toolbar.setTitle("關於我們");
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
 
         }
@@ -175,7 +208,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
