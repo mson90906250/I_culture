@@ -212,6 +212,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 mEmail = "";
                 mPwd = "";
                 mAccount = "";
+                mImageURL ="";
 
                 login.setVisible(true);
                 logout.setVisible(false);
